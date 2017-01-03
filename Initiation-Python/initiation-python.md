@@ -16,7 +16,11 @@ name: plan
 
 1. [Introduction](#Introduction)
 2. [Premiers pas avec Python](#fisrtSteps)
-3. Structures de données
+3. [Utilisation de Python en Quelques Lignes](#name: UsingPythonAsCalculator)
+
+???
+
+3. Structures de Données
 4. Nombres Aléatoires
 5. Chaînes de caractères
 6. Parsing Web
@@ -30,24 +34,23 @@ name: Introduction
 
 # Introduction
 
-Jean-Christophe Gay : 
-* Responsable du Pôle Infrastructure et Intégration
-* RSSI de l'université Paris-Dauphine
-* Docteur en Informatique
+Jean-Christophe Gay :
+- mail: jean-christophe.gay@dauphine.fr
+- Bureau: B038 (de temps en temps et surtout le matin)
 
 Expérience :
-* 5 ans de développement en laboratoire
-* 5 ans de développement pour l'Université Paris-Dauphine
+- 5 ans de développement en laboratoire
+- 5 ans de développement pour l'Université Paris-Dauphine
+
+???
+
+Parler de
+- Responsable du Pôle Infrastructure et Intégration
+- RSSI de l'université Paris-Dauphine
+- Docteur en Informatique
 
 ---
 
-# Déroulé du cours
-
-* aaa
-* bbb
-* ccc
-
----
 
 # Notes et examens
 
@@ -56,20 +59,26 @@ d'évaluation de ce cours.
 
 ---
 
+name: whatIsPython
+
+# Qu'est-ce que Python ?
+
+
+
+---
+
 name: firstSteps
 
 # Premiers pas en Python
 
+???
 
 - Pourquoi Python ?
---
 
 - Python 2.7.13 ?7?
 - Python 3.6.0 ???
---
 
 - Installation
---
 
 - Lancer Python et le quitter
 ---
@@ -129,8 +138,7 @@ name: InstallingPython
 ### Installation de Python
 ]
 .right-column[
-Mettre ici quelques notes sur l'installation de Python, 1 slide, 2 images max
-ce n'est pas le but du cours
+
 ## Procédure d'installation :
 - Se rendre sur le site de Python : [www.python.org](www.python.org)
 - Section "Download" puis "Windows"
@@ -148,26 +156,106 @@ name: InstallingPython
 ### Installation de Python
 ]
 .right-column[
-Mettre ici quelques notes sur l'installation de Python, 1 slide, 2 images max
-ce n'est pas le but du cours
+
 ## Procédure d'installation :
 - Se rendre sur le site de Python : [www.continuum.io](www.continuum.io)
 - Section "Download" puis "Windows"
 - Choisir l'installer qui convient
+
 ]
 ---
 name: fisrtLaunch
 
-Mettre sur deux colonnes des examples de lancement et de quittage de Python
-Avec quelques exemples comme 2+2 ou encore ln(1)
+# Premiers pas en python
+
+.left-column[
+### Lancement de l'interpréteur
+]
+.right-column[
+
+Dans un "terminal" lancer la commande python.
+
+Cet interpréteur peut être utilisé pour lancer des commandes python et ainsi réaliser des calculs. Nous allons essayer rapidement.
+
+]
+
+---
+
+# Premiers pas en python
+
+.left-column[
+### Lancement de l'interpréteur
+### Une premiere opération
+]
+.right-column[
+
+Dans l'interpréteur :
+
+```python
+>>> 1 + 1
+2
+>>> a = 1
+>>> print a
+1
+>>> a + 2
+3
+```
+]
+
+---
+
+# Premiers pas en python
+
+.left-column[
+### Lancement de l'interpréteur
+### Une premiere opération
+### On quitte
+]
+.right-column[
+
+Dans l'interpréteur :
+
+```python
+>>> quit
+Use quit() or Ctrl-D (i.e. EOF) to exit
+>>> quit()
+```
+]
 
 ---
 
 name: secondLaunch
 
-# Une première approche
+# Une première utilisation de Python
 
-Texte du livre...
+Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec 
+une remise annuelle de 10%. La valeur actuelle d'une rentrée future d'argent
+est la suivante :
+
+$$PV = { FV \over (1+R)^n }$$
+
+Dans cette équation PV représente la valeur présente et FV la valeur 
+future, R est la remise et n le nombre de périodes.
+
+Quelle est la valeur actuelle ?
+
+```python
+>>> 100 / (1 + 0.1)
+```
+---
+
+# Une première utilisation de Python
+
+Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec 
+une remise annuelle de 10%. La valeur actuelle d'une rentrée future d'argent
+est la suivante :
+
+$$PV = { FV \over (1+R)^n }$$
+
+Dans cette équation PV représente la valeur présente et FV la valeur 
+future, R est la remise et n le nombre de périodes.
+
+Quelle est la valeur actuelle ?
 
 ```python
 >>> 100 / (1 + 0.1)
@@ -179,7 +267,18 @@ Texte du livre...
 
 # Une première erreure
 
-Que se passe-t-il la fois prochaine ??
+Que se passe-t-il pour la prochaine période ?
+```python
+>>> 100 / (1+0.1)^2
+```
+
+---
+
+count: false
+
+# Une première erreure
+
+Que se passe-t-il pour la prochaine période ?
 ```python
 >>> 100 / (1+0.1)^2
 Traceback (most recent call last):
@@ -187,8 +286,28 @@ Traceback (most recent call last):
 * TypeError: unsupported operand type(s) for ^: 'float' and 'int'
 >>>
 ```
+
 En Python il faut utiliser '\*\*' et non '^' pour les puissances.
 
+---
+count: false
+# Une première erreure
+
+Que se passe-t-il pour la prochaine période ?
+```python
+>>> 100 / (1+0.1)^2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+* TypeError: unsupported operand type(s) for ^: 'float' and 'int'
+>>>
+```
+
+En Python il faut utiliser '\*\*' et non '^' pour les puissances.
+
+```python
+>>> 100 / (1+0.1)**2
+82.64462809917354
+```
 ---
 
 # Attention à la case !
@@ -196,9 +315,18 @@ En Python il faut utiliser '\*\*' et non '^' pour les puissances.
 ```python
 >>> x=2
 >>> X
+```
+
+---
+count: false
+# Attention à la case !
+
+```python
+>>> x=2
+>>> X
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-NameError: name 'X' is not defined
+*NameError: name 'X' is not defined
 >>>
 ```
 --
@@ -218,11 +346,11 @@ valeur qu'elles contiennent.
 >>> x = 2
 >>> x
 2
-* >>> # x est un entier
+*>>> # x est un entier
 >>> x="aa"
 >>> x
 'aa'
-* >>> # x est une chaîne de caractères
+*>>> # x est une chaîne de caractères
 >>>
 ```
 
@@ -254,7 +382,6 @@ such as "spam", type "modules spam".
 help>
 ```
 ---
-count: false
 
 # Trouver de l'aide
 
@@ -311,6 +438,7 @@ count: false
 
 # Solutions
 
+- Exercice 1
 ```python
 >>> aire=3.141592653*10**2
 >>> aire
@@ -318,21 +446,355 @@ count: false
 >>>
 ```
 --
-
+- Exercice 2
 ```python
 >>> diag=2**0.5
 >>> diag
 1.4142135623730951
 ```
-
+--
+- Exercice 3
 ```python
 >>> 127 + 127 + 127 + 127
 508
 ```
+---
+
+name: UsingPythonAsCalculator
+# Utilisation de Python en Quelques Lignes
+<br/>
+## Jouons avec les variables
+## Le module mathématique
+## Quelques fonctions utiles
+## Les tuples
 
 ---
 
-# Utilisation de Python comme d'une calculatrice
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+]
+.right-column[
+* On assigne des valeurs aux variables :
+```python
+>>> a = 1
+>>> aa = 'Salut'
+>>> b = 2
+>>> a + b
+3
+```
+
+* Afficher le contenu d'une variable :
+```python
+>>> a
+1
+>>> aa
+'Salut'
+>>> print a
+1
+>>> print aa
+Salut
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+]
+.right-column[
+* Quelques erreurs :
+```python
+>>> aaa
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+*NameError: name 'aaa' is not defined
+```
+```python
+>>> sqrt(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+*NameError: name 'sqrt' is not defined
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+]
+.right-column[
+* Du nommage des variables
+```python
+>>> # Mauvais exemple
+>>> x = 100
+>>> y = 0.1
+*>>> z = x / ( 1 + y )
+>>> print "Le résultat est", z
+Le résultat est 90.9090909091
+```
+```python
+>>> # Bon exemple
+>>> FV = 100
+>>> R = 0.1
+*>>> PV = FV / ( 1 + R )
+>>> print "Le résultat est", PV
+Le résultat est 90.9090909091
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+]
+.right-column[
+Introspection
+```python
+>>> dir
+['__builtins__', '__doc__', '__name__', '__package__']
+```
+
+dir() permet d'accèder à l'ensemble des nom définis à un instant
+
+```python
+>>> a = 1
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'a']
+```
+
+dir(a) permet d'avoir les fonctions applicable à a :
+```python
+>>> type(a)
+<type 'int'>
+>>> dir(a)
+['__abs__', '__add__', '__and__', '__cmp__',  ...
+'denominator', 'imag', 'numerator', 'real']
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+]
+.right-column[
+Suppression d'une variable
+```python
+>>> dir
+<built-in function dir>
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+>>> maVariable=1
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__', 'maVariable']
+>>> del(maVariable)
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+]
+.right-column[
+* Les opérations de base
+```python
+>>> # Addition
+>>> 1 + 1
+2
+>>> # Soustraction
+>>> 1 - 2
+-1
+>>> # Multiplication
+>>> 2 * 2
+4
+>>> # Divisions
+>>> 3 / 2
+1
+>>> 3 / 2.
+1.5
+>>> 3//2.
+1.0
+>>> int(2.5)
+2
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+]
+.right-column[
+* Plus de mathématiques, le module
+```python
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+>>> import math
+>>> dir()
+[... , 'math']
+>>> dir(math)
+['__doc__', '__name__', '__package__', 'acos', 'acosh',
+... , 'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'trunc']
+>>> math.pow(2,2)
+4.0
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+]
+.right-column[
+* Plus de mathématiques, le module
+
+```python
+>>> help(pow)
+Help on built-in function pow in module __builtin__:
+
+pow(...)
+    pow(x, y[, z]) -> number
+    
+    With two arguments, equivalent to x**y.  With three arguments,
+    equivalent to (x**y) % z, but may be more efficient (e.g. for longs).
+
+>>> pow(3,10,4)
+1
+>>> 3**10
+59049
+>>> 59049%4
+1
+
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+]
+.right-column[
+* Choisir la précision
+```python
+>>> 3/7.
+0.42857142857142855
+>>> payement=3/7.
+>>> pay2=round(payement,4)
+>>> pay2
+0.4286
+```
+* Mais attention...
+```python
+>>> payement*pow(10,6)
+428571.4285714285
+>>> pay2*pow(10,6)
+428600.0
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+]
+.right-column[
+* e, Pi, log et exp
+```python
+>>> math.e
+2.718281828459045
+>>> math.pi
+3.141592653589793
+>>> math.log(math.e)
+1.0
+>>> math.log(math.exp(2))
+2.0
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+### Une note sur import
+]
+.right-column[
+* import math
+```python
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+>>> import math
+>>> dir()
+[..., 'math']
+```
+
+* from math import
+```python
+>>> dir()
+['__builtins__', '__doc__', '__name__', '__package__']
+>>> from math import pow
+>>> dir()
+['..., 'pow']
+>>> from math import *
+>>> dir()
+['...', 'acos', 'acosh', 'asin', 'asinh', 'atan',
+..., 'sqrt', 'tan', 'tanh', 'trunc']
+```
+]
+
+---
+
+## Les tuples
+
+
+
+
+---
+
+# Programmation Fonctionnelle
+
+- Une première fonction
+- Notre propre module
+- Un peu de mathématiques
+- Utilisation de notre module
+
+---
+
+name: ToDo
+
+# A suivre...
+
+???
 
 # Introduction aux modules
 
@@ -350,10 +812,12 @@ GitHub
 
 # Bibliographie
 
-* Python for Finance, Yuxin Yan, PACK, date ?
-* Automate the boring stuff with Python
-* Python for Finance, O'Reilly
-* Mettre au moins un autre livre
+- Python for Finance, Yuxin Yan, PACK, date ?
+- Automate the boring stuff with Python
+- Python for Finance, O'Reilly
+- Mettre au moins un autre livre
+
+---
 
 # Some Code Inside
 
