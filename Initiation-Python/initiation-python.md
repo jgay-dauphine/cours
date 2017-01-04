@@ -15,8 +15,8 @@ name: plan
 # Plan du cours
 
 1. [Introduction](#Introduction)
-2. [Premiers pas avec Python](#fisrtSteps)
-3. [Utilisation de Python en Quelques Lignes](#name: UsingPythonAsCalculator)
+2. [Premiers pas avec Python](#firstSteps)
+3. [Utilisation de Python en Quelques Lignes](#UsingPythonAsCalculator)
 
 ???
 
@@ -49,8 +49,6 @@ Parler de
 - RSSI de l'université Paris-Dauphine
 - Docteur en Informatique
 
----
-
 
 # Notes et examens
 
@@ -63,6 +61,17 @@ name: whatIsPython
 
 # Qu'est-ce que Python ?
 
+Wikipédia :
+
+--
+> Python est un **langage de programmation** objet, multi-paradigme et multiplateformes. Il favorise la programmation **impérative structurée, fonctionnelle et orientée objet**. Il est doté d'un **typage dynamique fort**, d'une **gestion automatique de la mémoire** par ramasse-miettes et d'un système de gestion d'**exceptions** ; il est ainsi similaire à Perl, Ruby, Scheme, Smalltalk et Tcl.
+
+--
+> 
+> Le langage Python est placé sous une **licence libre** proche de la licence BSD et fonctionne sur la plupart des plates-formes informatiques, des supercalculateurs aux ordinateurs centraux, de Windows à Unix avec notamment GNU/Linux en passant par macOS, ou encore Android, iOS, et aussi avec Java ou encore .NET. Il est conçu pour optimiser la productivité des programmeurs en offrant des outils de haut niveau et une syntaxe simple à utiliser.
+
+
+???
 
 
 ---
@@ -70,6 +79,13 @@ name: whatIsPython
 name: firstSteps
 
 # Premiers pas en Python
+<br/>
+### Pourquoi Python ?
+### Version de Python ?
+### Installation de Python
+### Lancement de l'interpréteur
+### Une premiere opération
+### On quitte
 
 ???
 
@@ -434,8 +450,6 @@ help>
 
 ---
 
-count: false
-
 # Solutions
 
 - Exercice 1
@@ -764,21 +778,141 @@ pow(...)
 ['__builtins__', '__doc__', '__name__', '__package__']
 >>> from math import pow
 >>> dir()
-['..., 'pow']
+[..., 'pow']
 >>> from math import *
 >>> dir()
-['...', 'acos', 'acosh', 'asin', 'asinh', 'atan',
+[..., 'acos', 'acosh', 'asin', 'asinh', 'atan',
 ..., 'sqrt', 'tan', 'tanh', 'trunc']
 ```
 ]
 
 ---
 
-## Les tuples
+# Utilisation de Python en Quelques Lignes
 
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+### Une note sur import
+### Fonctions utiles
+]
+.right-column[
+* Affichage : print
+```python
+>>> import math
+>>> print 'Pi =', math.pi
+>>> print math.pi
+>>> print "Je crois que Pi vaut %f, enfin je crois, \
+... ou alors c'est %f ?" % (math.pi,  math.e)
+```
 
+* Savoir de quel type est une variable
+```python
+>>> x = 1
+>>> type(x)
+>>> x = float(x)
+>>> type(x)
+>>> if isInstance(x, (int, float)):
+... 	print "X est un nombre"
+```
+]
 
+---
 
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Jouons avec les variables
+### Le module mathématique
+### Une note sur import
+### Fonctions utiles
+]
+.right-column[
+* Combinaison de chaînes de caractères
+```python
+>>> a = 'Hello'
+>>> b = 'World'
+>>> a+b
+>>> a+' '+b
+>>> print "%s %s" % (a,b)
+```
+
+* Strip et upper
+```python
+>>> x = '  hello '
+>>> print x.upper()
+>>> print x.capitalize()
+>>> print x.strip()
+>>> print x.strip().capitalize()
+```
+]
+
+---
+
+# Utilisation de Python en Quelques Lignes
+
+.left-column[
+### Les tuples
+]
+.right-column[
+```python
+>>> t = ('JC', 33)
+>>> print t
+>>> len(t)
+>>> t[0]
+>>> type(t[1])
+>>> type(t)
+>>> print "My name is %s and my age is %d." % t
+```
+]
+
+---
+
+# Exercices
+
+- Comment trouver toutes les fonctions built-in ?
+- Convertir 'Cet exercice est facile' en lettres majuscules.
+- Nous avons 41 personnes dans la classe. Si nous devons faire des groupes de 3 pour des projets, combien de groupes et combien de personnes dans un groupe non entier ?
+- Expliquer le résultat suivant :
+```python
+>>> x=5.566
+>>> round(x,2)
+5.57
+```
+---
+
+# Solutions
+
+- Exercice 4
+```python
+>>> dir(__builtins__)
+```
+
+--
+- Exercice 5
+```python
+>>> s='Cet exercice est facile'.upper()
+>>> print s
+```
+
+--
+- Exercice 6
+```python
+>>> print 'Avec %d élèves ont peut faire %d \
+... groupes de %d personnes et il en restera %d.' % (41,41/3,3,41%3)
+Avec 41 élèves ont peut faire 13 groupes de 3 personnes et il en restera 2.
+```
+
+---
+
+# Solutions
+
+- Exercice 7
+C'est le fonctionnement classique de l'arrondi en mathématique :
+
+Si `\(x-int(x) \lt 0.5\)`<br/>
+Alors `\(round(x) = int(x)\)`<br/>
+Sinon `\(round(x) = int(x)+1\)`
 ---
 
 # Programmation Fonctionnelle
