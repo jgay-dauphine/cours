@@ -17,6 +17,7 @@ name: plan
 1. [Introduction](#Introduction)
 2. [Premiers pas avec Python](#firstSteps)
 3. [Utilisation de Python en Quelques Lignes](#UsingPythonAsCalculator)
+4. [Contrôle de Flux](#FlowControl)
 
 ???
 
@@ -913,6 +914,303 @@ C'est le fonctionnement classique de l'arrondi en mathématique :
 Si `\(x-int(x) \lt 0.5\)`<br/>
 Alors `\(round(x) = int(x)\)`<br/>
 Sinon `\(round(x) = int(x)+1\)`
+
+---
+name: FlowControl
+# Contrôle de flux
+
+### Les Booléens
+### Les Opérateurs Booléen
+### Les blocs de code
+### If, then, else, elif
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+]
+.right-column[
+```python
+>>> spam = True
+>>> spam
+True
+>>> true
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'true' is not defined
+>>> True = 2
+  File "<stdin>", line 1
+SyntaxError: can't assign to keyword
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+]
+.right-column[
+```python
+>>> help('keywords')
+
+Here is a list of the Python keywords.  Enter any keyword 
+to get more help.
+
+False               def                 if                  
+raise               None                del                 
+import              return              True                
+elif                in                  try
+and                 else                is                  
+while               as                  except              
+lambda              with                assert              
+finally             nonlocal            yield
+break               for                 not                 
+class               from                or                  
+continue            global              pass
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+]
+.right-column[
+| Opérateur | Signification|
+|:---------:|:------------:|
+| == | Égal à |
+| != | Différent de |
+| < | Inférieur à |
+| > | Supérieur à |
+| <= | Inférieur ou égal à |
+| >= | Supérieur ou égal à |
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+]
+.right-column[
+```python
+>>> 42 == 42
+True
+>>> 42 == 99
+False
+>>> 2 != 3
+True
+>>> 2 != 2
+False
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+]
+.right-column[
+```python
+>>> 'hello' == 'hello' 
+True
+>>> 'hello' == 'Hello' 
+False
+>>> 'dog' != 'cat' 
+True
+>>> True == True 
+True
+>>> True != False 
+True
+>>> 42 == 42.0 
+True
+>>> 42 == '42'
+False
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+]
+.right-column[
+```python
+>>> (4 < 5) and (5 < 6) 
+True
+>>> (4 < 5) and (9 < 6) 
+False
+>>> (1 == 2) or (2 == 2)
+True
+>>> 2 + 2 == 4 and not 2 + 2 == 5 and 2 * 2 == 2 + 2
+True
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+### Les blocs de code
+]
+.right-column[
+L'indentation c'est la vie !
+
+En python les blocs de code sont délimités par l'indentation, ils commencent
+en général par ':' et se prolongent tant que l'indentation est présente.
+
+```python
+>>> name = 'Mary'
+>>> password = 'swordfish'
+>>> if name == 'Mary':
+...     print('Hello Mary')
+...     if password == 'swordfish':
+...         print('Access granted.')
+...     else:
+...         print('Wrong password.')
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Les Booléens
+### Les Opérateurs Booléen
+### Les blocs de code
+### If, then, else, elif
+]
+.right-column[
+```python 
+>>> if name == 'Mary':
+...     print('Hello Mary')
+```
+```python
+>>> if name == "Mary":
+...     print('Hello Mary')
+... else:
+...     print('Who are you?')
+```
+```python
+>>> name = 'Bob'
+>>> age = 5
+>>> if name == 'Alice':
+...     print('Hi, Alice.')
+... elif age < 12:
+...     print('You are not Alice, kiddo.')
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Boucles
+]
+.right-column[
+- Les boucles While
+```python 
+>>> spam = 0
+>>> while spam < 5:
+...     print('Hello, world.')
+...     spam = spam + 1
+```
+- Break
+```python
+>>> while True:                         
+...     print('Please type your name.')
+...     name = input()                  
+...     if name == 'your name': 
+...         break               
+>>> print('Thank you!')
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Boucles
+]
+.right-column[
+- Continue
+```python
+>>> while True:
+...   print('Who are you?')
+...   name = input()
+...   if name != 'Joe':      
+...     continue             
+...   print('Hello, Joe. What is the password?') 
+...   password = input()      
+...   if password == 'swordfish':
+...     break               
+>>> print('Access granted.')
+```
+]
+
+---
+
+# Contrôle de flux
+
+.left-column[
+### Boucles
+]
+.right-column[
+- Les boucles For
+```python 
+>>> print('My name is')
+>>> for i in range(5):
+...    print('Jimmy Five Times (' + str(i) + ')')
+```
+```python
+  range(stop) -> range object
+  range(start, stop[, step]) -> range object
+  
+  Return an object that produces a sequence of integers
+  from start (inclusive) to stop (exclusive) by step.  
+  range(i, j) produces i, i+1, i+2, ..., j-1. start 
+  defaults to 0, and stop is omitted!  range(4) 
+  produces 0, 1, 2, 3. These are exactly the valid 
+  indices for a list of 4 elements. When step is given, 
+  it specifies the increment (or decrement).
+```
+]
+
+---
+
+# Exercices
+
+
+- Écrire un code qui affiche 'Hello' si 1 est stocké dans la variable spam,
+'Howdy' si 2 est stocké dans spam et 'Greetings' dans tous les autres cas.
+- Quelle est la différence entre break et continue ?
+- Quelle sont les différences entre range(10), range(0, 10) et range(0, 10, 1)
+  ?
+- Écrire un programme qui calcule la somme des 20 premiers entiers à l'aide
+  d'une boucle fot.
+- Faire la même chose à l'aide d'une boucle while. 
+- Faire la même chose.
+
 ---
 
 # Programmation Fonctionnelle
