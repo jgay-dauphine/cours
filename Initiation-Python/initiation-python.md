@@ -18,6 +18,7 @@ name: plan
 2. [Premiers pas avec Python](#firstSteps)
 3. [Utilisation de Python en Quelques Lignes](#UsingPythonAsCalculator)
 4. [Contrôle de Flux](#FlowControl)
+5. [Programmation Fonctionnelle](#Functions)
 
 ???
 
@@ -27,7 +28,7 @@ name: plan
 6. Parsing Web
 7. Gestion de Documents
 8. Automatisation de tâches
-9. Préparation des Projets 
+9. Préparation des Projets
 
 ---
 
@@ -53,7 +54,7 @@ Parler de
 
 # Notes et examens
 
-Réalisation d'un projet au choix dans une liste. Le projet sera l'unique moyen 
+Réalisation d'un projet au choix dans une liste. Le projet sera l'unique moyen
 d'évaluation de ce cours.
 
 ---
@@ -68,7 +69,7 @@ Wikipédia :
 > Python est un **langage de programmation** objet, multi-paradigme et multiplateformes. Il favorise la programmation **impérative structurée, fonctionnelle et orientée objet**. Il est doté d'un **typage dynamique fort**, d'une **gestion automatique de la mémoire** par ramasse-miettes et d'un système de gestion d'**exceptions** ; il est ainsi similaire à Perl, Ruby, Scheme, Smalltalk et Tcl.
 
 --
-> 
+>
 > Le langage Python est placé sous une **licence libre** proche de la licence BSD et fonctionne sur la plupart des plates-formes informatiques, des supercalculateurs aux ordinateurs centraux, de Windows à Unix avec notamment GNU/Linux en passant par macOS, ou encore Android, iOS, et aussi avec Java ou encore .NET. Il est conçu pour optimiser la productivité des programmeurs en offrant des outils de haut niveau et une syntaxe simple à utiliser.
 
 
@@ -245,13 +246,13 @@ name: secondLaunch
 
 # Une première utilisation de Python
 
-Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec 
+Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec
 une remise annuelle de 10%. La valeur actuelle d'une rentrée future d'argent
 est la suivante :
 
 $$PV = { FV \over (1+R)^n }$$
 
-Dans cette équation PV représente la valeur présente et FV la valeur 
+Dans cette équation PV représente la valeur présente et FV la valeur
 future, R est la remise et n le nombre de périodes.
 
 Quelle est la valeur actuelle ?
@@ -263,13 +264,13 @@ Quelle est la valeur actuelle ?
 
 # Une première utilisation de Python
 
-Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec 
+Si nous estimons qu'un retour de 100€ est attendu au bout d'un an avec
 une remise annuelle de 10%. La valeur actuelle d'une rentrée future d'argent
 est la suivante :
 
 $$PV = { FV \over (1+R)^n }$$
 
-Dans cette équation PV représente la valeur présente et FV la valeur 
+Dans cette équation PV représente la valeur présente et FV la valeur
 future, R est la remise et n le nombre de périodes.
 
 Quelle est la valeur actuelle ?
@@ -414,9 +415,9 @@ break               exec                is                  try
 class               finally             lambda              while
 continue            for                 not                 with
 def                 from                or                  yield
-del                 global              pass                
+del                 global              pass
 
-help> 
+help>
 ```
 ---
 # Trouver de l'aide en ligne
@@ -691,7 +692,7 @@ Help on built-in function pow in module __builtin__:
 
 pow(...)
     pow(x, y[, z]) -> number
-    
+
     With two arguments, equivalent to x**y.  With three arguments,
     equivalent to (x**y) % z, but may be more efficient (e.g. for longs).
 
@@ -956,19 +957,19 @@ SyntaxError: can't assign to keyword
 ```python
 >>> help('keywords')
 
-Here is a list of the Python keywords.  Enter any keyword 
+Here is a list of the Python keywords.  Enter any keyword
 to get more help.
 
-False               def                 if                  
-raise               None                del                 
-import              return              True                
+False               def                 if
+raise               None                del
+import              return              True
 elif                in                  try
-and                 else                is                  
-while               as                  except              
-lambda              with                assert              
+and                 else                is
+while               as                  except
+lambda              with                assert
 finally             nonlocal            yield
-break               for                 not                 
-class               from                or                  
+break               for                 not
+class               from                or
 continue            global              pass
 ```
 ]
@@ -1023,17 +1024,17 @@ False
 ]
 .right-column[
 ```python
->>> 'hello' == 'hello' 
+>>> 'hello' == 'hello'
 True
->>> 'hello' == 'Hello' 
+>>> 'hello' == 'Hello'
 False
->>> 'dog' != 'cat' 
+>>> 'dog' != 'cat'
 True
->>> True == True 
+>>> True == True
 True
->>> True != False 
+>>> True != False
 True
->>> 42 == 42.0 
+>>> 42 == 42.0
 True
 >>> 42 == '42'
 False
@@ -1050,9 +1051,9 @@ False
 ]
 .right-column[
 ```python
->>> (4 < 5) and (5 < 6) 
+>>> (4 < 5) and (5 < 6)
 True
->>> (4 < 5) and (9 < 6) 
+>>> (4 < 5) and (9 < 6)
 False
 >>> (1 == 2) or (2 == 2)
 True
@@ -1099,7 +1100,7 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 ### If, then, else, elif
 ]
 .right-column[
-```python 
+```python
 >>> if name == 'Mary':
 ...     print('Hello Mary')
 ```
@@ -1128,7 +1129,7 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 ]
 .right-column[
 - Les boucles While
-```python 
+```python
 >>> spam = 0
 >>> while spam < 5:
 ...     print('Hello, world.')
@@ -1136,11 +1137,11 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 ```
 - Break
 ```python
->>> while True:                         
+>>> while True:
 ...     print('Please type your name.')
-...     name = input()                  
-...     if name == 'your name': 
-...         break               
+...     name = input()
+...     if name == 'your name':
+...         break
 >>> print('Thank you!')
 ```
 ]
@@ -1158,12 +1159,12 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 >>> while True:
 ...   print('Who are you?')
 ...   name = input()
-...   if name != 'Joe':      
-...     continue             
-...   print('Hello, Joe. What is the password?') 
-...   password = input()      
+...   if name != 'Joe':
+...     continue
+...   print('Hello, Joe. What is the password?')
+...   password = input()
 ...   if password == 'swordfish':
-...     break               
+...     break
 >>> print('Access granted.')
 ```
 ]
@@ -1177,7 +1178,7 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 ]
 .right-column[
 - Les boucles For
-```python 
+```python
 >>> print('My name is')
 >>> for i in range(5):
 ...    print('Jimmy Five Times (' + str(i) + ')')
@@ -1185,13 +1186,13 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 ```python
   range(stop) -> range object
   range(start, stop[, step]) -> range object
-  
+
   Return an object that produces a sequence of integers
-  from start (inclusive) to stop (exclusive) by step.  
-  range(i, j) produces i, i+1, i+2, ..., j-1. start 
-  defaults to 0, and stop is omitted!  range(4) 
-  produces 0, 1, 2, 3. These are exactly the valid 
-  indices for a list of 4 elements. When step is given, 
+  from start (inclusive) to stop (exclusive) by step.
+  range(i, j) produces i, i+1, i+2, ..., j-1. start
+  defaults to 0, and stop is omitted!  range(4)
+  produces 0, 1, 2, 3. These are exactly the valid
+  indices for a list of 4 elements. When step is given,
   it specifies the increment (or decrement).
 ```
 ]
@@ -1200,7 +1201,6 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 
 # Exercices
 
-
 - Écrire un code qui affiche 'Hello' si 1 est stocké dans la variable spam,
 'Howdy' si 2 est stocké dans spam et 'Greetings' dans tous les autres cas.
 - Quelle est la différence entre break et continue ?
@@ -1208,19 +1208,177 @@ en général par ':' et se prolongent tant que l'indentation est présente.
   ?
 - Écrire un programme qui calcule la somme des 20 premiers entiers à l'aide
   d'une boucle fot.
-- Faire la même chose à l'aide d'une boucle while. 
+- Faire la même chose à l'aide d'une boucle while.
 - Faire la même chose.
 
 ---
+name: Functions
 
 # Programmation Fonctionnelle
 
-- Une première fonction
-- Notre propre module
-- Un peu de mathématiques
-- Utilisation de notre module
+### Une première fonction
+### Notre propre module
+### Un peu de mathématiques
+### Utilisation de notre module
 
 ---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+]
+.right-column[
+Wikipédia :
+> En informatique, une fonction est une entité informatique qui encapsule une
+> portion de code (une séquence d'instructions) effectuant un traitement
+> spécifique bien identifié relativement
+> indépendant du reste du programme, et qui peut être réutilisé dans le même
+> programme, ou dans un autre. Dans ce cas, on range souvent la fonction dans
+> une bibliothèque pour la rendre disponible à d'autres projets de
+> programmation, tout en préservant l'intégrité de son implémentation.
+
+> Les fonctions permettent de diviser un problème en décomposant le programme à
+> réaliser en portions de code plus faciles à produire, à utiliser, à gérer et à
+> entretenir. Les instructions réalisant la fonction sont encapsulées à
+> l'intérieur de celle-ci et le programmeur peut faire appel à la fonction sans se
+> préoccuper des détails internes à celle-ci; la fonction joue le rôle d'une boite
+> noire dans les routines qui l'emploient.
+]
+
+???
+
+Ne pas oublier de faire un point sur l'utilisation de l'IDE. Pas de slides mais
+il faut faire une démonstration de l'utilisation de l'IDE
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+]
+.right-column[
+- Définition :
+```python
+def maFonction():
+    print "Hello World"
+```
+
+- Utilisation :
+```python
+maFonction()
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### Une première fonction
+### Notre propre module
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### Une première fonction
+### Notre propre module
+### Un peu de mathématiques
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### Une première fonction
+### Notre propre module
+### Un peu de mathématiques
+### Utilisation de notre module
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### sous-titre
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### sous-titre
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### sous-titre
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+# Titre
+
+.left-column[
+### sous-titre
+]
+.right-column[
+- Point
+```python
+>>> code python
+```
+]
+
+---
+
+
+
 
 name: ToDo
 
@@ -1285,4 +1443,4 @@ Display formula:
 
 $$e^{i\pi} + 1 = 0$$
 
- 
+
