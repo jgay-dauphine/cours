@@ -1261,117 +1261,407 @@ il faut faire une démonstration de l'utilisation de l'IDE
 .right-column[
 - Définition :
 ```python
-def maFonction():
-    print "Hello World"
+    def maFonction():
+        print "Hello World"
 ```
 
 - Utilisation :
 ```python
-maFonction()
+    maFonction()
 ```
 ]
 
 ---
 
-# Titre
+# Programmation Fonctionnelle
 
 .left-column[
 ### Une première fonction
+]
+.right-column[
+- Définition avec des paramètres :
+```python
+    def hello(name):
+        print('Hello ' + name)
+```
+
+- Utilisation :
+```python
+    hello('Alice')
+    hello('Bob')
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+]
+.right-column[
+- Valeurs de retour :
+```python
+    def getAnswer(answerNumber):
+        if answerNumber == 1:
+            return "C'est sûr"
+        elif answerNumber == 2:
+            return "C'est vraisemblable"
+        elif answerNumber == 3:
+            return "Oui"
+        elif answerNumber == 4:
+            return "Retentez votre chance"
+        elif answerNumber == 5:
+            return "Redemandez plus tard"
+        elif answerNumber == 6:
+            return "Concentrez-vous et redemandez"
+        elif answerNumber == 7:
+            return "Ma réponse est non"
+        elif answerNumber == 8:
+            return "Les chances ne sont pas de votre côté"
+        elif answerNumber == 9:
+            return "Peu vraisemblable"
+```
+
+- Utilisation :
+```python
+    import random
+    fortune = getAnswer(random.randint(1,9))
+    print(fortune)
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+]
+.right-column[
+- Passage d'arguments et print
+```python
+    print('Hello')
+    print('World')
+```
+- les arguments nommés ('keywords arguments')
+```python
+    print('Hello', end=' ')
+    print('World')
+    print('Hello', 'Wordl')
+    print('cats', 'dogs', 'mice', sep=', ', end='.\n')
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+### Portée des variables
+]
+.right-column[
+- On ne peut pas utiliser des variables locales en dehors de leur scope...
+```python
+    def spam():
+        eggs = 31337
+        print(str(eggs))
+    spam()
+    print(eggs)
+```
+
+- On ne peut toujours pas utiliser des variables locales en dehors de leur scope...
+```python
+    def spam():
+        eggs = 31337
+        bacon()
+        print(eggs)
+
+    def bacon():
+        ham = 101
+        eggs = 0
+
+    spam()
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+### Portée des variables
+]
+.right-column[
+- Par contre on peut tout à fait utiliser des variables globales dans une
+  fonction 
+```python
+    def spam():
+        print(eggs)
+    
+    eggs = 31337
+    spam()
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+### Portée des variables
+]
+.right-column[
+- A ne SURTOUT PAS refaire, mais on peut le faire... 
+```python
+    def spam():
+        eggs = 'spam local'
+        print(eggs)
+
+    def bacon():
+        eggs = 'bacon local'
+        print(eggs)
+        spam()
+        print(eggs)
+    
+    eggs = 'global'
+    bacon()
+```
+]
+
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+### Portée des variables
+]
+.right-column[
+- L'utilisation de 'global'
+```python
+    def spam():
+        global eggs
+        eggs = spam
+
+    eggs = 'global'
+    spam()
+    print(eggs)
+```
+]
+
+---
+name: OurModule
+# Notre propre module
+
+.left-column[
+### Une première fonction
+### Portée des variables
 ### Notre propre module
 ]
 .right-column[
-- Point
+- Documentation Python :
+> A module is a file containing Python definitions and statements. The file
+> name is the module name with the suffix .py appended.
+- En fait un module python est simplement un fichier que l'on importe. Le
+  fichier contient simplement les fonctions utilisables.
+- Exemple :
 ```python
->>> code python
+    >>> import suites
+    >>> # Importe le fichier suites.py
+    >>> dir(suites)
+    ['__name__', 'fib', 'fib2']
 ```
 ]
 
 ---
 
-# Titre
+# Notre propre module
 
 .left-column[
 ### Une première fonction
+### Portée des variables
 ### Notre propre module
-### Un peu de mathématiques
 ]
 .right-column[
-- Point
+Créons notre module "suites"
 ```python
->>> code python
+    # Un module avec différentes suites
+
+    def fib(n):    # affiche la série de Fibonacci de 1 à n
+        a, b = 0, 1
+        while b < n:
+            print(b, end=' ')
+            a, b = b, a+b
+        print()
+
+    def fib2(n):   # renvoit la suite de  Fibonacci jusqu'à n
+        res = []
+        a, b = 0, 1
+        while b < n:
+            res.append(b)
+            a, b = b, a+b
+        return res
 ```
+On sauve le fichier suites.py.
 ]
 
 ---
 
-# Titre
+# Notre propre module
 
 .left-column[
 ### Une première fonction
 ### Notre propre module
-### Un peu de mathématiques
 ### Utilisation de notre module
 ]
 .right-column[
-- Point
+- Utilisation :
 ```python
->>> code python
+>>> import suites
+>>> suites.__name__
+'suites'
+>>> suites.fib(1000)
+1 1 2 3 5 8 13 21 34 55 144 233 377 610 987
 ```
 ]
 
 ---
 
-# Titre
+# Notre propre module
 
 .left-column[
-### sous-titre
+### Une première fonction
+### Notre propre module
+### Utilisation de notre module
 ]
 .right-column[
-- Point
+- Rendre le module executable
+- Parce que l'on veut tester notre module
+- Parce que l'on peut transformer rapidement un module en exécutables
 ```python
->>> code python
+    if __name__ == "__main__":
+        import sys
+        # Utilisation : python suites.py <rang>
+        fib(int(sys.argv[1]))
 ```
 ]
 
 ---
 
-# Titre
+# Exercices
+
+- Ajouter au module suite la suite de Syracuse définie par :
+$$u_{n+1} = 
+\dfrac{u_n}{2} \mbox{ si } u_n \mbox{ est pair, }
+3*u_n+1 \mbox{ sinon.}
+$$
+- Créer un programme cherchant à faire deviner un chiffre. Le joueur a six
+  tentatives.
+
+---
+
+# Solutions
+
+- Exercice 7 :
+```python
+    # Jeu où l'on doit deviner un nombre
+
+    # imports
+
+    # On demande 6 fois au joueur
+        # Si le chiffre est trop bas
+        # Si le chiffre est trop haut
+        # Sinon on sort
+
+    # Si l'on a trouvé le chiffre
+    # Ou pas...
+```
+
+---
+
+# Solutions
+
+- Exercice 7:
+```python
+    # Jeu où l'on doit deviner un nombre
+
+    import random
+
+    secret = random.randint(1,20))
+    print('Je penses à un nombre entre 1 et 20.')
+
+    # On demande 6 fois au joueur
+    for nombreChoix in range(1,7):
+        print('Alors quel nombre ?')
+        choix = int(input())
+        
+        if choix < secret:
+            print('Votre choix est trop petit.') # Si le chiffre est trop bas
+        elif choix > secret:
+            print('Votre choix est trop grand.') # le chiffre est trop haut
+        
+        else:
+            break # Sinon on sort
+
+    if choix == secret:
+        print('Bien joué.') # Si l'on a trouvé le chiffre
+    else:
+        print('Pas de chance...') # Ou pas...
+```
+
+---
+
+# Solutions
+
+- Exercice 8:
+```python
+    def syracuse( debut, rang):
+        u = debut
+        print(u, end=' ')
+        for n in range(debut, rang):
+            if u % 2 == 0:
+                u = u / 2
+            else:
+                u = 3 * u + 1
+            print(u, end=' ')
+```
+---
+
+# Le Jeu du Pendu
 
 .left-column[
-### sous-titre
+### Concept
 ]
 .right-column[
-- Point
-```python
->>> code python
-```
+- Nous allons mettre au point un jeu du pendu
+- Règles :
+ - Un mot est choisi par l'ordinateur
+ - A chaque tour le joueur propose une lettre
+ - Si la lettre existe dans le mot elle apparaît
+ - Sinon le compteur augmente et le joueur se rapproche de la fin
 ]
 
 ---
 
-# Titre
+# Le Jeu du Pendu
 
 .left-column[
-### sous-titre
+### Concept
+### Mise en place
 ]
 .right-column[
-- Point
 ```python
->>> code python
-```
-]
-
----
-
-# Titre
-
-.left-column[
-### sous-titre
-]
-.right-column[
-- Point
-```python
->>> code python
+    # imports
+    # Choisir un mot 
+    # tant qu'il reste un tour
+        # demander une lettre
+        # test de la lettre
+        # test victoire
+        # incrémentation
 ```
 ]
 
