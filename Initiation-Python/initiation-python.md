@@ -1207,10 +1207,61 @@ en général par ':' et se prolongent tant que l'indentation est présente.
 - Quelle sont les différences entre range(10), range(0, 10) et range(0, 10, 1)
   ?
 - Écrire un programme qui calcule la somme des 20 premiers entiers à l'aide
-  d'une boucle fot.
+  d'une boucle for.
 - Faire la même chose à l'aide d'une boucle while.
 - Faire la même chose.
 
+---
+
+# Solutions
+
+- Exercice 8:
+```python
+    if spam == 1:
+        val = 'Hello'
+    elif spam == 2:
+        val = 'Howdy'
+    else:
+        val = 'Greetings'
+    print(val)
+```
+--
+- Exercice 9:
+
+Break permet de quitter une boucle, alors que continue permet d'aller
+directement à la prochaine itération de la boucle.
+--
+
+- Exercice 10:
+
+Absoluement aucune !
+
+---
+
+# Solutions
+
+- Exercice 11:
+```python
+    somme = 0
+    for i in range(1, 21):
+        somme += i
+    print(somme)
+```
+--
+- Exercice 12:
+```python
+    somme = 0
+    i = 1
+    while i < 21:
+        somme += i
+        i += 1
+    print(somme)
+```
+--
+- Exercice 13:
+```python
+    somme = (20*21)//2
+```
 ---
 name: Functions
 
@@ -1230,20 +1281,13 @@ name: Functions
 ]
 .right-column[
 Wikipédia :
-> En informatique, une fonction est une entité informatique qui encapsule une
+> En informatique, une fonction est une entité informatique qui **encapsule** une
 > portion de code (une séquence d'instructions) effectuant un traitement
-> spécifique bien identifié relativement
-> indépendant du reste du programme, et qui peut être réutilisé dans le même
+> spécifique **bien identifié** relativement
+> indépendant du reste du programme, et qui peut être **réutilisé** dans le même
 > programme, ou dans un autre. Dans ce cas, on range souvent la fonction dans
-> une bibliothèque pour la rendre disponible à d'autres projets de
+> une **bibliothèque** pour la rendre disponible à d'autres projets de
 > programmation, tout en préservant l'intégrité de son implémentation.
-
-> Les fonctions permettent de diviser un problème en décomposant le programme à
-> réaliser en portions de code plus faciles à produire, à utiliser, à gérer et à
-> entretenir. Les instructions réalisant la fonction sont encapsulées à
-> l'intérieur de celle-ci et le programmeur peut faire appel à la fonction sans se
-> préoccuper des détails internes à celle-ci; la fonction joue le rôle d'une boite
-> noire dans les routines qui l'emploient.
 ]
 
 ???
@@ -1322,7 +1366,16 @@ il faut faire une démonstration de l'utilisation de l'IDE
         elif answerNumber == 9:
             return "Peu vraisemblable"
 ```
+]
 
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+]
+.right-column[
 - Utilisation :
 ```python
     import random
@@ -1348,7 +1401,7 @@ il faut faire une démonstration de l'utilisation de l'IDE
 ```python
     print('Hello', end=' ')
     print('World')
-    print('Hello', 'Wordl')
+    print('Hello', 'World')
     print('cats', 'dogs', 'mice', sep=', ', end='.\n')
 ```
 ]
@@ -1370,7 +1423,17 @@ il faut faire une démonstration de l'utilisation de l'IDE
     spam()
     print(eggs)
 ```
+]
 
+---
+
+# Programmation Fonctionnelle
+
+.left-column[
+### Une première fonction
+### Portée des variables
+]
+.right-column[
 - On ne peut toujours pas utiliser des variables locales en dehors de leur scope...
 ```python
     def spam():
@@ -1541,7 +1604,7 @@ On sauve le fichier suites.py.
 .right-column[
 - Rendre le module executable
 - Parce que l'on veut tester notre module
-- Parce que l'on peut transformer rapidement un module en exécutables
+- Parce que l'on peut transformer rapidement un module en exécutable
 ```python
     if __name__ == "__main__":
         import sys
@@ -1554,19 +1617,19 @@ On sauve le fichier suites.py.
 
 # Exercices
 
+- Créer un programme cherchant à faire deviner un chiffre. Le joueur a six
+  tentatives.
 - Ajouter au module suite la suite de Syracuse définie par :
 $$u_{n+1} = 
 \dfrac{u_n}{2} \mbox{ si } u_n \mbox{ est pair, }
 3*u_n+1 \mbox{ sinon.}
 $$
-- Créer un programme cherchant à faire deviner un chiffre. Le joueur a six
-  tentatives.
 
 ---
 
 # Solutions
 
-- Exercice 7 :
+- Exercice 14:
 ```python
     # Jeu où l'on doit deviner un nombre
 
@@ -1585,10 +1648,9 @@ $$
 
 # Solutions
 
-- Exercice 7:
+- Exercice 14:
 ```python
     # Jeu où l'on doit deviner un nombre
-
     import random
 
     secret = random.randint(1,20))
@@ -1598,12 +1660,10 @@ $$
     for nombreChoix in range(1,7):
         print('Alors quel nombre ?')
         choix = int(input())
-        
         if choix < secret:
             print('Votre choix est trop petit.') # Si le chiffre est trop bas
         elif choix > secret:
             print('Votre choix est trop grand.') # le chiffre est trop haut
-        
         else:
             break # Sinon on sort
 
@@ -1617,9 +1677,9 @@ $$
 
 # Solutions
 
-- Exercice 8:
+- Exercice 15:
 ```python
-    def syracuse( debut, rang):
+    def syracuse(debut, rang):
         u = debut
         print(u, end=' ')
         for n in range(debut, rang):
@@ -1674,6 +1734,8 @@ name: ToDo
 
 # A suivre...
 
+Si vous avez des idées... nous pourrons les réaliser.
+
 ???
 
 # Introduction aux modules
@@ -1696,41 +1758,4 @@ GitHub
 - Automate the boring stuff with Python
 - Python for Finance, O'Reilly
 - Mettre au moins un autre livre
-
----
-
-# Some Code Inside
-
-Code:
-
-```python
-def add(a,b):
-    return a + b
-```
-
----
-count: false
-
-# Some Code Inside
-
-Code:
-
-```python
-def add(a,b):
-*   return a + b
-```
-
-Notice the return statement
-
----
-
-# Display and Inline
-
-1. This is an inline integral: `\(\int_a^bf(x)dx\)`
-2. More `\(x={a \over b}\)` formulae.
-
-Display formula:
-
-$$e^{i\pi} + 1 = 0$$
-
 
