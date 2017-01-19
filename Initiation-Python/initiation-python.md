@@ -19,6 +19,7 @@ name: plan
 3. [Utilisation de Python en Quelques Lignes](#UsingPythonAsCalculator)
 4. [Contrôle de Flux](#FlowControl)
 5. [Programmation Fonctionnelle](#Functions)
+6. [Réalisation d'un solver de Sudoku](#ProjectSudoku)
 
 ???
 
@@ -1726,9 +1727,425 @@ $$
 ]
 
 ---
+name: ProjectSudoku
+# Le sudoku
 
+.left-column[
+### Règles du jeu
+]
+.right-column[
+Un sudoku classique contient neuf lignes et neuf colonnes, donc 81 cases au
+total. Le but du jeu est de remplir ces cases avec des chiffres allant de 1 à 9
+en veillant toujours à ce qu'un même chiffre ne figure qu'une seule fois par
+colonne, une seule fois par ligne, et une seule fois par carré de neuf cases.
 
+On peut déduire deux règles
+- Si une case contient un chiffre, ce chiffre ne peut pas se retrouver dans les
+  blocs contenant cette case ;
+- Si une case, du fait de la règle précédente, ne peut contenir qu'une seule
+  valeur, alors cette valeur doit être affectée à cette case.
+]
 
+---
+
+# Le sudoku
+
+.left-column[
+### Règles du jeu
+### Notations
+]
+.right-column[
+Quelques notations et conventions :
+- une grille se compose de 81 **cases** ou **square** ;
+- les **colones** (cols) sont numérotés de 1 à 9 ;
+- les **lignes** (rows) sont numérotés de A à I ;
+- un bloc est un carré de 9 cases tels que definit par le jeu ;
+- une **unité** est un ensemble de cases qui s'impactent les unes les autres :
+  soit une ligne, soit une colone, soit un bloc ;
+- les **pairs** d'une case sont l'ensemble des cases qui sont dans une unité
+  commune avec la case considérée.
+]
+
+---
+
+# Le sudoku
+
+.left-column[
+### Règles du jeu
+### Notations
+]
+.right-column[
+
+Quelques représentations d'une grille :
+```python
+    A1 A2 A3| A4 A5 A6| A7 A8 A9   
+    B1 B2 B3| B4 B5 B6| B7 B8 B9  
+    C1 C2 C3| C4 C5 C6| C7 C8 C9 
+    --------+---------+--------- 
+    D1 D2 D3| D4 D5 D6| D7 D8 D9 
+    E1 E2 E3| E4 E5 E6| E7 E8 E9
+    F1 F2 F3| F4 F5 F6| F7 F8 F9
+    --------+---------+---------
+    G1 G2 G3| G4 G5 G6| G7 G8 G9
+    H1 H2 H3| H4 H5 H6| H7 H8 H9
+    I1 I2 I3| I4 I5 I6| I7 I8 I9
+```
+]
+
+---
+
+# Le sudoku
+
+.left-column[
+### Règles du jeu
+### Notations
+]
+.right-column[
+Quelques représentations d'une grille :
+```python
+     4 1 7 | 3 6 9 | 8 2 5 
+     6 3 2 | 1 5 8 | 9 4 7
+     9 5 8 | 7 2 4 | 3 1 6 
+    -------+-------+-------
+     8 2 5 | 4 3 7 | 1 6 9 
+     7 9 1 | 5 8 6 | 4 3 2 
+     3 4 6 | 9 1 2 | 7 5 8 
+    -------+-------+-------
+     2 8 9 | 6 4 3 | 5 7 1 
+     5 7 3 | 2 9 1 | 6 8 4 
+     1 6 4 | 8 7 5 | 2 9 3
+```
+]
+
+---
+
+# Le sudoku
+
+.left-column[
+### Règles du jeu
+### Notations
+]
+.right-column[
+Les Units et les Peers :
+```python
+    A1 A2 A3 |          |         
+    B1 B2 B3 |          |         
+    C1 C2 C3 | C4 C5 C6 | C7 C8 C9
+    ---------+----------+---------
+       D2    |          |         
+       E2    |          |         
+       F2    |          |         
+    ---------+----------+---------
+       G2    |          |         
+       H2    |          |         
+       I2    |          |         
+```
+]
+
+---
+
+# Le sudoku
+
+.left-column[
+### Règles du jeu
+### Notations
+### Algorithme
+]
+.right-column[
+Comment résoudre donc une grille de Sudoku ?
+- Lecture de la grille
+- Afficher une grille
+- Appliquer les contraintes
+ - assigner les valeurs de base
+ - eliminer les possibilités restantes
+ - Si une case ne peut plus contenir qu'une valeur, l'assigner
+ - Itérer le processus jusqu'à ce qu'il n'y ait plus de possiblité
+- Choisir une case et tenter les possibilités restantes
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+]
+.right-column[
+- mes lignes sont A, B, C, D, ...
+- mes colones sont 1, 2, 3, ...
+- Comment avoir A1, A2, ..., I8, I9 ???
+```python
+>>> c = '1'
+>>> r = 'A'
+>>> [ r + c ]
+[ 'A1' ]
+>>> [ r+c, r+c ]
+[ 'A1', 'A1' ]
+```
+Donc :
+```python
+>>> l = []
+>>> for r in rows:
+...     for c in cols:
+...         l.append(r+c)
+>>> l
+['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+]
+.right-column[
+- Mais il y a mieux ?
+```python
+>>> rows = 'ABC'
+>>> cols = '123'
+>>> [ r+c for r in rows for c in cols ]
+['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+```
+]
+
+---
+
+count: false
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+]
+.right-column[
+- Mais il y a mieux ?
+```python
+>>> rows = 'ABC'
+>>> cols = '123'
+>>> [ r+c for r in rows for c in cols ]
+['A1', 'A2', 'A3', 'B1', 'B2', 'B3', 'C1', 'C2', 'C3']
+```
+- Inlining : Technique visant à écrire le maximum de code sur la même ligne
+```python
+>>> l = '123456789'
+>>> [ v for v in l ]
+['1', '2', '3', '4', '5', '6', '7', '8', '9']
+>>> r = []
+>>> for v in l:
+...     r.append(v)
+>>> r
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+]
+.right-column[
+- Et on peut aller plus loin avec des tests :
+```python
+>>> l = '123456789'
+>>> [ ( int(v) if int(v)%2==0 else O ) for v in l ]
+[0, 2, 0, 4, 0, 6, 0, 8, 0]
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+### Les dictionnaires et les values
+]
+.right-column[
+- les dictionnaires sont les tableaux associatifs de python
+```python
+>>> d = dict()
+>>> d['A'] = 1
+>>> d[5] = 2
+>>> d
+{5:2, 'A':1}
+>>> d['A']
+1
+```
+- ils permettent de stocker des valeurs associées à des clées. Plus simple à
+  retrouver.
+```python
+>>> d = dict( (s, c) for s in ['A1', 'B1' ] )
+>>> d
+{'B1': '123456789', 'A1': '123456789'}
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+### Les dictionnaires et les values
+]
+.right-column[
+- Astuce pour construire un dictionnaire à partir de deux listes de même taille
+```python
+>>> l = '123456789'
+>>> c = 'ABCDEFGHI'
+>>> dict(zip(l,c))
+{'8': 'H', '6': 'F', '3': 'C', '5': 'E', '9': 'I', 
+'7': 'G', '1': 'A', '4': 'D', '2': 'B'}
+>>> dict(zip(c,l))
+{'G': '7', 'F': '6', 'C': '3', 'I': '9', 'E': '5', 
+'A': '1', 'H': '8', 'B': '2', 'D': '4'}
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### Construction des squares 
+### Les dictionnaires et les values
+### Les retours multiples et dict.items()
+]
+.right-column[
+- Comment parcourir l'ensemble d'un dictionnaire ???
+```python
+>>> d = dict(zip(l, chars))
+>>> d[0]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+KeyError: 0
+>>> d['A1']
+'1'
+>>> for s,d in d.items():
+...     print('%s => %s' % (s,d))
+C3 => 9
+...
+A2 => 2
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### La fonction all()
+]
+.right-column[
+- Soit l un tableau, renvoyer vrai si tous les éléments de l sont divisibles
+  par 2 :
+```python
+>>> l = [ v for v in range(0,20,2) ]
+>>> ret = True
+>>> for v in l:
+...     if v % 2 != 0:
+...         ret = False
+...         break
+>>> ret
+True
+```
+- c'est un peu long non ?
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### La fonction all()
+]
+.right-column[
+- Examinons all()
+```python
+>>> all([True])
+True
+>>> all([True, False])
+False
+>>> all([True, True])
+True
+```
+- Comment générer le tableau des tests à vérifier ?
+```python
+>>> [ v % 2 == 0 for v in l ]
+[True, True, True, True, True, True, True, True, True]
+>>> all( [ v%2 == 0 for v in l ])
+True
+```
+]
+
+---
+
+# Le sudoku -- Notes de développement
+
+.left-column[
+### La fonction all()
+### Les sets
+]
+.right-column[
+- Les set sont des ensembles non ordonnés d'éléments uniques. Ils sont très
+  pratiques pour éliminer des valeurs multiples
+```python
+>>> l = list('12345654321')
+>>> l
+['1', '2', '3', '4', '5', '6', '5', '4', '3', '2', '1']
+>>> l = list(set(l))
+>>> l
+['5', '4', '2', '6', '3', '1']
+>>> l.sort()
+>>> l
+['1', '2', '3', '4', '5', '6']
+```
+]
+
+---
+
+# TPs
+
+- Sujet 1 :
+> Voici un algorithme simple permettant de générer des grilles de Sudoku :
+> - faire un mélange aléatoire des cases de la grille
+> - une par une remplir les cases avec un chiffre aléatoire en respectant les
+>   possibilités pour ne pas générer une grille impossible
+> - Si une contradiction aparaît, recommencer
+> - Si 17 cases sont remplies, alors la grille est prête
+> Implémentez cet algorithme et résolvez 1000 grilles ainsi générés. Conserver
+> les 10 grilles les plus lentes à être résolues
+
+---
+
+# TPs
+
+- Sujet 2 :
+> Vous pouvez lire dans un fichier texte des ensembles de 5 lignes. La première
+> ligne contient une question, les 4 suivantes les propositions de réponses.
+> Réaliser un programme qui génère 10 versions différentes de cette liste de
+> questions et de réponses. Pour chaque version différente les questions ne
+> seront pas dans le même ordre. Pour chaque question, les réponses ne seront
+> pas dans le même ordre non plus.
+
+---
+
+# TPs
+
+- Modalités :
+ - Un seul TP est à rendre.
+ - Les TPs doivent être réalisés par groupes de une ou deux personnes
+ - La date limite pour rendre votre TP est le vendredi 27/01 17h. L'heure du
+   mail fera foi.
+ - Vous rendrez vos TP par mail à jean-christophe.gay@dauphine.fr
+ - Le sujet du mail sera : '[Python] ... '
+ - La pièce jointe sera un fichier zip contenant le code et les traces
+   d'exécutions
+
+---
 
 name: ToDo
 
@@ -1737,10 +2154,6 @@ name: ToDo
 Si vous avez des idées... nous pourrons les réaliser.
 
 ???
-
-# Introduction aux modules
-
-# Premier code depuis un fichier
 
 # Fonctions classes et méthodes
 
