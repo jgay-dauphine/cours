@@ -20,6 +20,7 @@ name: plan
 4. [Contrôle de Flux](#FlowControl)
 5. [Programmation Fonctionnelle](#Functions)
 6. [Réalisation d'un solver de Sudoku](#ProjectSudoku)
+7. [Notion d'Objet](#POO)
 
 ???
 
@@ -2147,28 +2148,205 @@ True
 
 ---
 
-name: ToDo
+name: POO
 
-# A suivre...
+# Un peu d'Objet
 
-Si vous avez des idées... nous pourrons les réaliser.
+.left-column[
+### Définition
+]
+.right-column[
+- Wikipédia
+> un objet est un ***conteneur*** ***symbolique*** et ***autonome*** qui contient des
+> ***informations*** et des ***mécanismes*** concernant un ***sujet***, manipulés dans un
+> programme. Le sujet est souvent quelque chose de tangible appartenant au
+> monde réel
+]
 
-???
+---
 
-# Fonctions classes et méthodes
+# Un peu d'Objet
 
-# Automate the boring stuff with python
+.left-column[
+### Définition
+]
+.right-column[
+- Moi
+> un objet c'est un peu comme une boîte dans laquelle on va ranger des choses.
+> On peut y ranger des valeurs (informations) ou des transformations (des
+> mécanismes). On peut avoir un tirroir avec des grains de poivre et un moulin
+> à poivre.
+>
+> Pour construire un objet, on a besoin d'un plan. D'un plan on peut construire
+> de nombreux objets. En informatique un plan est une ***classe***, et un meuble
+> construit avec à l'aide d'un plan est une ***instance***.
+> Les informations contenues dans un objet sont les ***attributs***. Les
+> mécanismes sont des ***méthodes***.
+]
 
-# A la marge :
-Git
-GitHub
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+]
+.right-column[
+```python
+    class TestClass:
+        """Une classe toute simple pour tester."""
+        
+        def __init__(self):
+            self.monEntier = 1
+            self.monString = 'noir'
+
+        def afficher(self):
+            print(self.monEntier)
+            print(self.monString)
+
+    t = TestClass()
+    t.afficher()
+```
+]
+
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+]
+.right-column[
+```python
+    class TestClass:
+        """Une classe toute simple pour tester."""
+
+*        class_attribute = 0 # on va en faire un compteur        
+        def __init__(self):
+            self.monEntier = 1
+            self.monString = 'noir'
+*            TestClass.class_attribute += 1
+
+        def afficher(self):
+            print(self.monEntier)
+            print(self.monString)
+*            print(TestClass.class_attribute)
+
+    t = TestClass()
+    t.afficher()
+*    t2.TestClass()
+*    t.afficher()
+```
+]
+
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+### Dir
+]
+.right-column[
+- Les attributs spéciaux
+```python
+    t = TestClass()
+    dir(t)
+    ['__class__', '__delattr__', '__dict__', '__dir__', 
+    '__doc__', '__eq__', '__format__', '__ge__', 
+    '__getattribute__', '__gt__', '__hash__', '__init__', 
+    '__le__', '__lt__', '__module__', '__ne__', '__new__', 
+    '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', 
+    '__sizeof__', '__str__', '__subclasshook__', 
+    '__weakref__', 'afficher', 'att', 'monEntier', 
+    'monString']
+```
+]
+
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+### Dir
+]
+.right-column[
+- Les méthodes spéciales
+    - \_\_repr\_\_
+    - \_\_str\_\_
+    - \_\_getattr\_\_ 
+    - \_\_add\_\_, \_\_radd\_\_, \_\_iadd\_\_
+- Et plein d'autres !!!
+]
+
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+### Dir
+### Héritage
+]
+.right-column[
+- l'Héritage ???
+> L'héritage c'est comme dans la vraie vie. Si vous héritez de quelque chose
+> c'est quelque chose qui n'est pas définit par vous mais qui fait quand même
+> partie de vous.
+- A quoi ça sert ?
+> C'est pratique pour factoriser des attributs ou des méthodes.
+]
+
+---
+
+# Un peu d'Objet
+
+.left-column[
+### Définition
+### Une première classe
+### Dir
+### Héritage
+]
+.right-column[
+```python
+    class Personne:
+        """Une simple classe à propos d'une personne"""
+        def __init__(self, nom, prenom):
+            self.nom = nom
+            self.prenom = prenom
+        def __str__(self):
+            return self.prenom + " " + self.prenom
+
+    class AgentSpecial(Personne):
+        """Classe définissant un agent spécial."""
+        def __init__(self, nom, prenom, matricule):
+            Personne.__init__(self, nom, prenom)
+            self.matricule = matricule
+        def __str__(self):
+            return "Agent " + self.nom + ", matricule " + \
+                    self.matricule
+        
+```
+]
+
+---
+
+# La prochaine fois...
+
+- Sélection des sujets de Projets
+- Venez avec vos questions sur Python 
 
 ---
 
 # Bibliographie
 
-- Python for Finance, Yuxin Yan, PACK, date ?
+- Python for Finance, Yuxin Yan, PACK, 2014
 - Automate the boring stuff with Python
 - Python for Finance, O'Reilly
-- Mettre au moins un autre livre
 
