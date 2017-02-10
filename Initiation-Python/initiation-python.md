@@ -21,16 +21,7 @@ name: plan
 5. [Programmation Fonctionnelle](#Functions)
 6. [Réalisation d'un solver de Sudoku](#ProjectSudoku)
 7. [Notion d'Objet](#POO)
-
-???
-
-3. Structures de Données
-4. Nombres Aléatoires
-5. Chaînes de caractères
-6. Parsing Web
-7. Gestion de Documents
-8. Automatisation de tâches
-9. Préparation des Projets
+8. [Sujets de Mini-Projets](#Projects)
 
 ---
 
@@ -2337,10 +2328,108 @@ name: POO
 
 ---
 
-# La prochaine fois...
+name: Projects
 
-- Sélection des sujets de Projets
-- Venez avec vos questions sur Python 
+# Mini-Projets
+
+## Consignes
+* le projet doit être rendu par mail à jean-christophe.gay@dauphine.fr. Le
+  sujet du mail commencera par [Python].
+* le projet sera rendu au plus tard le
+* le fichier principal du projet ser exécutable, c'est à dire que l'on pourra
+  lancer votre programme par la commande : python3 fichier.py arguments
+* le projet comportera :
+ * le code source
+ * les fichiers d'entrée nécessaire à l'éxécution de votre programme
+ * un compte rendu
+* le compte rendu se composera :
+ * d'une introdution reprenant le sujet
+ * d'une présentation rapide de vos travaux, explication de la démarche, des
+   algorithmes.
+ * d'une présentation plus détaillées des difficultés rencontrées, avec les
+   moyens mis en oeuvre pour les dépasser.
+ * d'une conclusion sur un possibilité d'amélioration ou d'ajout de
+   fonctionnalités.
+
+---
+
+# Mini-Projet 1
+
+## Pictos
+
+> Une image se cache sous une grille. Le joueur connait le nombre de cases à
+> noircir pour chaque ligne et chaque colonne de la grille. Il avance dans le
+> jeu tour par tour en noircissant ou en blanchissant une case. Le jeu se
+> termine lorsque le dessin est correctement affiché dans la grille.
+
+## Exemple de dessin :
+```python
+ 024555420
+4..OO.OO..
+7.OOOOOOO.
+7.OOOOOOO.
+5..OOOOO..
+3...OOO...
+1....O....
+```
+
+---
+
+# Mini-Projet 2
+
+## Affichage de la *insérez ici ce que vous voulez* du jour
+
+> Vous connaissez tous un site regroupant des collections de choses, comme
+> DansTonChat ou lapenseedujour.net. Le but est ici d'aller moissonner votre
+> site web favoris pour sortir une citation "du jour". Chaque appel du
+> programme donnera une nouvelle citation.
+
+---
+
+# Mini-Projet 3
+
+## Le jeu de la vie
+
+> Le jeu de la vie, automate cellulaire imaginé par John Horton Conway en 1970,
+> est probablement, à l'heure actuelle, le plus connu de tous les automates
+> cellulaires.
+
+> Le jeu se déroule sur une grille à deux dimensions, théoriquement infinie (mais
+> de longueur et de largeur finies et plus ou moins grandes dans la pratique),
+> dont les cases — qu'on appelle des « cellules », par analogie avec les cellules
+> vivantes — peuvent prendre deux états distincts : « vivantes » ou « mortes ». À
+> chaque étape, l'évolution d'une cellule est entièrement déterminée par l'état
+> de ses huit voisines de la façon suivante :
+
+> Une cellule morte possédant exactement trois voisines vivantes devient vivante
+> (elle naît).
+> Une cellule vivante possédant deux ou trois voisines vivantes le reste, sinon
+> elle meurt. 
+
+---
+
+# Mini-Projet 4
+
+> Imaginez des races et sous-races (par exemple les elfes, les trolls, les
+> trolls-cyclopes, etc.) et implémentez un système pour simuler des combats entre
+> ces personnages. Vous pouvez choisir l'univers qui vous plaira (fantastique,
+> science-fiction, mythologie, animaux, etc.).
+ 
+> Les attributs (par exemple vie, force, mana, etc. ) seront modifiés selon les
+> blessures infligées, dont la gravité sera déterminée aléatoirement. À vous de
+> définir les règles ! Tout est possible. Un personnage aura perdu le combat
+> quand ses points de vie seront à zéro. L'idéal serait de créer des personnages
+> de même valeur, donnant lieu à des combats équilibrés.
+ 
+> Organisez ensuite un tournoi où chaque personnage se battra en duel avec chacun
+> des autres. Il y aura 10 personnages différents, pas forcément tous de race
+> différente. Le tournoi sera donc composé de 45 combats. Si vous préférez un
+> combat plus "global", où plus de deux personnages se battent en même temps, à
+> vous de définir les règles.
+ 
+> Le programme n'a pas besoin d'être graphique (mais il peut l'être). On devra
+> quand même pouvoir "suivre" l'évolution du combat à l'écran d'une manière ou
+> d'une autre...
 
 ---
 
