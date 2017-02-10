@@ -2384,6 +2384,12 @@ name: Projects
 > site web favoris pour sortir une citation "du jour". Chaque appel du
 > programme donnera une nouvelle citation.
 
+> Vous ajouterez une fonctionnalité de prédiction de la météo. En vous rendant
+> sur le site de météo france vous récupérerez les prévision pour la journée
+> des précipitations. En cas de forte probabilité de pluie ou de neige vous
+> ajouterez au message précédent un avertissement. Pareil en cas de fortes
+> chaleur ou de froid intense.
+
 ---
 
 # Mini-Projet 3
