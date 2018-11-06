@@ -8,7 +8,7 @@ Vous avez jusqu'au 5 mai 2017 23h59 pour rendre le projet par mail à jean-chris
 * le code source (plusieurs fichiers possibles) ;
 * le rapport.
 
-# Rapport :
+# Rapport :
 
 Le rapport contiendra :
 * une présentation du sujet ;
@@ -19,11 +19,11 @@ Le rapport contiendra :
 * une conclusion sur comment aller plus loin ou comment utiliser ce projet dans un cadre plus grand.
 
 
-# Sujets :
+# Sujets :
 
-1 - Priceur, Call/Put, en utilisant le Modèle Cox Ross Rubinstein 
-2- Priceur d’options digitales
-3- Priceur d’options à partir des données d’un fichier csv ou texte.
-   Le fichier en entrée doit avoir les données permettant le calculer le call et put et les greques
-   Et en sortie call/put et grecques
-4- Pricing d’option en utilisant la méthode de simulation Monte Carlo.
+1. Priceur, Call/Put, en utilisant le Modèle Cox Ross Rubinstein 
+2. Priceur d’options digitales
+3. Priceur d’options à partir des données d’un fichier csv ou texte.
+   * Le fichier en entrée doit avoir les données permettant le calculer le call et put et les greques
+   * Et en sortie call/put et grecques
+4. Pricing d’option en utilisant la méthode de simulation Monte Carlo.
