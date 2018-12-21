@@ -4,7 +4,7 @@ Il faut rendre 1 sujet parmi les 4 proposés.
 
 Les sujets sont à traiter par groupes de 2 ou 3 personnes.
 
-Vous avez jusqu'au 5 mai 2017 23h59 pour rendre le projet par mail à jean-christophe.gay@dauphine.fr. Le sujet du mail sera "[C++] Projet ...". Le corps du message contiendra les noms du groupe. Un seul mail par groupe ! Une pièce jointe sera attaché au mail et contiendra :
+Vous avez jusqu'au 29 mars 2018 23h59 pour rendre le projet par mail à jean-christophe.gay@dauphine.fr. Le sujet du mail sera "[C++] Projet ...". Le corps du message contiendra les noms du groupe. Un seul mail par groupe ! Une pièce jointe sera attaché au mail et contiendra :
 * le code source (plusieurs fichiers possibles) ;
 * le rapport.
 
